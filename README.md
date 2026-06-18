@@ -74,4 +74,4 @@ If you prefer to run the raw Python script yourself:
 Pull requests are welcome! If you have ideas for cooler animations or faster downloading protocols, feel free to open an issue or submit a PR.
 
 ## 📄 License
-This project is open-source and available under the MIT License. Stay cool! 😎
+This project is open-source and available under the [MIT License](https://github.com/zyrexdz/YTDownloader/blob/main/LICENSE). Stay cool! 😎
