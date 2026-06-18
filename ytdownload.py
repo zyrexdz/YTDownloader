@@ -179,8 +179,16 @@ def runapp():
         default="1"
     )
 
+    if choice in ['2', '3']:
+        folder_category = 'Music'
+    else:
+        folder_category = 'Videos'
+
     ydlopts = getoptions(choice)
-    ydlopts['outtmpl'] = '%(title)s.%(ext)s'
+    
+    downloaddir = os.path.join(os.path.expanduser('~'), folder_category, 'YTDownloader')
+    os.makedirs(downloaddir, exist_ok=True)
+    ydlopts['outtmpl'] = os.path.join(downloaddir, '%(title)s.%(ext)s')
     
     progressbar = ytdlbar()
     ydlopts['progress_hooks'] = [progressbar.updatebar]
@@ -191,11 +199,13 @@ def runapp():
         with yt_dlp.YoutubeDL(ydlopts) as ydl:
             info = ydl.extract_info(url, download=False)
             title = info.get('title', 'Unknown Title')
-            console.print(f"\n[bold green]Video Title:[/bold green] [white]{title}[/white]\n")
+            uploader = info.get('uploader', 'Unknown Author')
+            console.print(f"\n[bold green]Video Title:[/bold green] [white]{title}[/white]")
+            console.print(f"[bold cyan]Author:[/bold cyan] [white]{uploader}[/white]\n")
             
             ydl.download([url])
             
-        console.print(Panel("[bold green]✨ Successfully downloaded by Zyre Downloader! ✨[/bold green]", box=box.ROUNDED, border_style="green"))
+        console.print(Panel(f"[bold green]✨ Successfully downloaded by Zyre Downloader! ✨[/bold green]\n\n[bold cyan]💾 Saved in:[/bold cyan] [white]{downloaddir}[/white]", box=box.ROUNDED, border_style="green"))
 
     except Exception as e:
         if progressbar.started:
