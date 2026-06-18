@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <strong>The fastest, sleekest, and most efficient YouTube downloader built in Python.</strong>
+  <strong>The fastest and most efficient YouTube downloader built in Python.</strong>
 </p>
 
 <p align="center">
